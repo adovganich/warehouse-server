@@ -35,7 +35,6 @@ namespace WarehouseServer
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                .AddCookie(options =>
                {
-
                    options.Cookie.Name = "user";
                    options.LoginPath = "/auth/login";
                    options.LogoutPath = "/auth/logout";
