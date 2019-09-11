@@ -4,6 +4,25 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>eb6dbd74-4541-4853-a5a6-348c7cec30b8</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190827115217_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190827115217_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190911103338_AddEventLogAndGuid.cs" />
+    <Compile Remove="Migrations\20190911103338_AddEventLogAndGuid.Designer.cs" />
+    <Compile Remove="Migrations\20190911103745_AddEventLogAndGuid.cs" />
+    <Compile Remove="Migrations\20190911103745_AddEventLogAndGuid.Designer.cs" />
+    <Compile Remove="Migrations\20190911104351_CreateDatabase.cs" />
+    <Compile Remove="Migrations\20190911104351_CreateDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20190911135752_CreateDatabase.cs" />
+    <Compile Remove="Migrations\20190911135752_CreateDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20190911135910_CreateDatabase.cs" />
+    <Compile Remove="Migrations\20190911135910_CreateDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20190911144003_CreateDatabase.cs" />
+    <Compile Remove="Migrations\20190911144003_CreateDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20190911145052_CreateDatabase.cs" />
+    <Compile Remove="Migrations\20190911145052_CreateDatabase.Designer.cs" />
+  </ItemGroup>
   
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.1" />

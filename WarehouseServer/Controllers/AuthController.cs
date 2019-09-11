@@ -33,7 +33,7 @@ namespace WarehouseServer.Controllers
         {
             await HttpContext.SignOutAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme);
-            return new JsonResult(new User() { Email = "test", Password = "test" });
+            return new JsonResult("ok");
         }
 
         [HttpPost]
@@ -41,10 +41,12 @@ namespace WarehouseServer.Controllers
         [Route("login")]
         public async Task<IActionResult> SendCredentials([FromQuery] User user)
         {
-            if (LoginUser(user.Email, user.Password))
+            string userId = LoginUser(user.Email, user.Password);
+            if (userId != null)
             {
                 var claims = new List<Claim>
                 {
+                    new Claim(ClaimTypes.NameIdentifier, userId),
                     new Claim(ClaimTypes.Email, user.Email)
                 };
 
@@ -64,10 +66,17 @@ namespace WarehouseServer.Controllers
             }
         }
 
-        private bool LoginUser(string username, string password)
+        private string LoginUser(string username, string password)
         {
-            var user = _context.Users.Single(x => x.Email == username);
-            return user != null && user.Password == password;
+            var user = _context.Users.SingleOrDefault(x => x.Email == username);
+            if(user != null && user.Password == password)
+            {
+                return user.Id;
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }

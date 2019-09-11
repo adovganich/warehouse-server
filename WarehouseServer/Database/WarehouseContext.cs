@@ -25,5 +25,13 @@ namespace WarehouseServer.Database
 
         public DbSet<Item> Items { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<EventLog> EventLogs { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasIndex(p => new { p.Email })
+                .IsUnique(true);
+        }
     }
 }
