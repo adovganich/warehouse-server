@@ -56,6 +56,7 @@ namespace WarehouseServer
             //app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
+            app.UseStaticFiles();
         }
     }
 }

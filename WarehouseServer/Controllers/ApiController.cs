@@ -29,7 +29,7 @@ namespace WarehouseServer.Controllers
             var principal = HttpContext.User as ClaimsPrincipal;
             var userId = principal?.Claims
                 .First(c => c.Type == ClaimTypes.NameIdentifier);
-            var items = _context.Items.Where(x => x.User.Id.ToString() == userId.Value).Select(x => new { x.Id, x.Name });
+            var items = _context.Items.Where(x => x.User.Id == userId.Value).Select(x => new { x.Id, x.Name });
             return new JsonResult(items);
         }
 
@@ -64,7 +64,7 @@ namespace WarehouseServer.Controllers
                 var getEvent = new EventLog() { Id = Guid.NewGuid().ToString(), Type = Model.Enums.EventType.Get, Item = item, User = user, Time = DateTime.Now };
                 _context.EventLogs.Add(getEvent);
                 _context.SaveChanges();
-                return new JsonResult(item);
+                return new JsonResult("ok");
             }
             else
             {
