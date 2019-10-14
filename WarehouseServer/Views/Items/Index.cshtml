@@ -8,21 +8,50 @@
 
 <h2>All items</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="parent">
+    <div class="child">
+        @Html.ActionLink("Create", "Create")
+    </div>
+    <div class="child">
+        <form method="post" enctype="multipart/form-data" asp-controller="Items" asp-action="UploadFile">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p>Upload one or more files using this form:</p>
+                    <input type="file" name="files" multiple />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Upload" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="child">
+        @Html.ActionLink("Download xml file", "DownloadFile")
+    </div>
+    </div>
+    <table class="table">
+        <thead>
             <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td style="text-align: center">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
                 <td style="text-align: center">
                     @if (item.User != null)
                     {
@@ -36,7 +65,10 @@
                 <td style="text-align: center">
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
+                <td style="text-align: center">
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
             </tr>
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>

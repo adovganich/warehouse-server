@@ -1,3 +1,21 @@
 ﻿th, td {
     padding-left: 30px;
 }
+
+dt, dd {
+    padding: 10px;
+}
+
+.form-group {
+    padding: 10px;
+}
+
+.parent {
+    display: table;
+    border: 1px solid #444444;
+}
+
+.child {
+    display: table-cell;
+    padding: 20px;
+}
