@@ -16,8 +16,7 @@ using WarehouseServer.Model;
 namespace WarehouseServer.Controllers
 {
     [Route("[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase {
+    public class AuthController : Controller {
 
         private readonly WarehouseContext _context;
 
@@ -29,17 +28,27 @@ namespace WarehouseServer.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("logout")]
-        public async Task<IActionResult> LogoutAsync()
+        public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme);
             return new JsonResult("ok");
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("weblogout")]
+        public async Task<IActionResult> WebLogout()
+        {
+            await HttpContext.SignOutAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Auth");
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
-        public async Task<IActionResult> SendCredentials([FromQuery] User user)
+        public async Task<IActionResult> Login([FromQuery] User user)
         {
             string userId = LoginUser(user.Email, user.Password);
             if (userId != null)
@@ -59,6 +68,44 @@ namespace WarehouseServer.Controllers
                   new ClaimsPrincipal(claimsIdentity),
                   authProperties);
                 return new JsonResult(user);
+            }
+            else
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("login")]
+        public IActionResult Login()
+        {
+            return View(new User());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("weblogin")]
+        public async Task<IActionResult> WebLogin(User user)
+        {
+            string userId = LoginUser(user.Email, user.Password);
+            if (userId != null)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, userId),
+                    new Claim(ClaimTypes.Email, user.Email)
+                };
+
+                var claimsIdentity = new ClaimsIdentity(
+                  claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties();
+
+                await HttpContext.SignInAsync(
+                  CookieAuthenticationDefaults.AuthenticationScheme,
+                  new ClaimsPrincipal(claimsIdentity),
+                  authProperties);
+                return RedirectToAction("Index", "Home");
             }
             else
             {

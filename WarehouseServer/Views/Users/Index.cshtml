@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WarehouseServer.Model.User>
+@{
+    Layout = "_Logout";
+}
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h2>Users</h2>
+
+<div class="parent">
+    <div class="child">
+        @Html.ActionLink("Create", "Create")
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td style="text-align: center">
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td style="text-align: center">
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td style="text-align: center">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </td>
+            <td style="text-align: center">
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

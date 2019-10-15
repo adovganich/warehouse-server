@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_Layout";
+}
+@Html.ActionLink("Log out", "WebLogout", "Auth")
+<h2>Start page</h2>
+<div class="parent">
+    <div class="child">
+        @Html.ActionLink("Items", "Index", "Items")
+    </div>
+    <div class="child">
+        @Html.ActionLink("Event logs", "Index", "EventLogs")
+    </div>
+    <div class="child">
+        @Html.ActionLink("Users", "Index", "Users")
+    </div>
+</div>

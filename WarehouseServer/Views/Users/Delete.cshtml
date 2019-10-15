@@ -1,0 +1,33 @@
+﻿@model WarehouseServer.Model.User
+@{
+    Layout = "_Layout";
+}
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h3>Are you sure you want to delete this?</h3>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Email)
+    </dt>
+    <dt>
+        @Html.DisplayFor(model => model.Email)
+    </dt>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

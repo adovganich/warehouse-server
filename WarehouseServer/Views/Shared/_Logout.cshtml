@@ -1,0 +1,8 @@
+﻿<environment names="Development">
+    <link rel="stylesheet" href="~/css/main.css" />
+</environment>
+@Html.ActionLink("Log out", "WebLogout", "Auth")
+@RenderBody()
+<div class="bottom">
+    @Html.ActionLink("Back To Main Page", "Index", "Home")
+</div>

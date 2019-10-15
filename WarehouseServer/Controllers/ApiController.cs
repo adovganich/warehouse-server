@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using WarehouseServer.Database;
 using WarehouseServer.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WarehouseServer.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class ApiController : ControllerBase

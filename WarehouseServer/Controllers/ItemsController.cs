@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,6 +16,7 @@ using WarehouseServer.Model;
 
 namespace WarehouseServer.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     public class ItemsController : Controller
     {

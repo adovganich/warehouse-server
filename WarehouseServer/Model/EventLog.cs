@@ -15,6 +15,7 @@ namespace WarehouseServer.Model
         public EventType Type { get; set; }
         public User User { get; set; }
         public Item Item { get; set; }
+        [DisplayFormat(DataFormatString = "{0:hh:mm:ss dd MMM yyyy}")]
         public DateTime Time { get; set; }
 
     }

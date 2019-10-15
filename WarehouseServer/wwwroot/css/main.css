@@ -19,3 +19,7 @@ dt, dd {
     display: table-cell;
     padding: 20px;
 }
+
+.bottom {
+    padding: 20px;
+}
